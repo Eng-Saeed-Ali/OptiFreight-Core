@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" width="1100" height="520" role="img" aria-labelledby="t d">
+  <title id="t">OptiFreight-Core architecture pipeline</title>
+  <desc id="d">Untrusted JSON enters a four-stage imperative boundary gate, becomes frozen integer domain objects, flows through a pure functional core (models, graph, physics, optimizer), and is continuously governed by AST fitness functions and a brute-force oracle.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1120"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <marker id="aA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="aI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#818cf8"/>
+    </marker>
+    <marker id="aE" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#34d399"/>
+    </marker>
+    <style>
+      .h  { font: 700 13px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; letter-spacing: 1.2px; }
+      .sh { font: 500 11px 'JetBrains Mono',Consolas,'Courier New',monospace; fill: #94a3b8; }
+      .ct { font: 700 12.5px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; fill: #f1f5f9; }
+      .cb { font: 400 11px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; fill: #cbd5e1; }
+      .mono { font: 500 10.5px 'JetBrains Mono',Consolas,'Courier New',monospace; fill: #e2e8f0; }
+      .tag { font: 700 10px 'JetBrains Mono',Consolas,'Courier New',monospace; }
+      .title { font: 800 18px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; fill: #f8fafc; }
+      .sub { font: 400 12px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; fill: #94a3b8; }
+      .card { fill: #1e293b; }
+      .lbl { font: 600 10px 'Inter','Segoe UI',Helvetica,Arial,sans-serif; fill: #94a3b8; }
+    </style>
+  </defs>
+
+  <rect width="1100" height="520" rx="18" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="30" y="36" class="title">OptiFreight-Core · Boundary → Functional Core → Governance</text>
+  <text x="30" y="56" class="sub">AI capability ≠ AI authority: untrusted input is parsed once, then every decision is exact integer math.</text>
+
+  <!-- ===================== LEFT: BOUNDARY SHELL ===================== -->
+  <rect x="20" y="72" width="320" height="430" rx="14" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.55"/>
+  <text x="36" y="96" class="h" fill="#fbbf24">IMPERATIVE BOUNDARY SHELL</text>
+  <text x="36" y="112" class="sh">intake_gate.py · 118 LOC</text>
+
+  <rect x="60" y="124" width="240" height="30" rx="15" fill="#7f1d1d" fill-opacity="0.55" stroke="#f87171"/>
+  <text x="180" y="144" text-anchor="middle" class="ct" fill="#fecaca">⚠ Untrusted JSON / Webhook</text>
+  <line x1="180" y1="155" x2="180" y2="170" stroke="#f59e0b" stroke-width="2" marker-end="url(#aA)"/>
+
+  <rect x="36" y="172" width="288" height="66" rx="10" class="card" stroke="#f59e0b" stroke-opacity="0.7"/>
+  <text x="48" y="190" class="tag" fill="#fbbf24">STAGE 1</text>
+  <text x="108" y="190" class="ct">Byte Cap &amp; NUL Reject</text>
+  <text x="48" y="208" class="cb">4 MiB measured in UTF-8 bytes (not chars),</text>
+  <text x="48" y="224" class="cb">strict decode, any \x00 → INVALID</text>
+  <line x1="180" y1="239" x2="180" y2="250" stroke="#f59e0b" stroke-width="2" marker-end="url(#aA)"/>
+
+  <rect x="36" y="252" width="288" height="66" rx="10" class="card" stroke="#f59e0b" stroke-opacity="0.7"/>
+  <text x="48" y="270" class="tag" fill="#fbbf24">STAGE 2</text>
+  <text x="108" y="270" class="ct">O(n) Depth-8 Bracket Scanner</text>
+  <text x="48" y="288" class="cb">Single pass, string/escape aware — kills</text>
+  <text x="48" y="304" class="cb">recursion bombs before json.loads runs</text>
+  <line x1="180" y1="319" x2="180" y2="330" stroke="#f59e0b" stroke-width="2" marker-end="url(#aA)"/>
+
+  <rect x="36" y="332" width="288" height="72" rx="10" class="card" stroke="#f59e0b" stroke-opacity="0.7"/>
+  <text x="48" y="350" class="tag" fill="#fbbf24">STAGE 3</text>
+  <text x="108" y="350" class="ct">Zero-Float Deserializer</text>
+  <text x="48" y="368" class="mono">parse_float=str · NaN/∞ rejected</text>
+  <text x="48" y="384" class="cb">"1450.50" → 145_050 ¢ exact string scaler,</text>
+  <text x="48" y="398" class="cb">extra precision rejected, duplicate keys fatal</text>
+  <line x1="180" y1="405" x2="180" y2="416" stroke="#f59e0b" stroke-width="2" marker-end="url(#aA)"/>
+
+  <rect x="36" y="418" width="288" height="72" rx="10" class="card" stroke="#f59e0b" stroke-opacity="0.7"/>
+  <text x="48" y="436" class="tag" fill="#fbbf24">STAGE 4</text>
+  <text x="108" y="436" class="ct">Closed-World Schema</text>
+  <text x="48" y="454" class="mono">optifreight.bundle/v1</text>
+  <text x="48" y="470" class="cb">Envelope errors fatal · bad offers isolated</text>
+  <text x="48" y="484" class="cb">as OfferRejection, batch continues</text>
+
+  <!-- boundary → core -->
+  <path d="M324,452 C346,452 340,300 368,300" fill="none" stroke="#f59e0b" stroke-width="2.2" marker-end="url(#aA)"/>
+  <text x="342" y="292" class="lbl" transform="rotate(-90 342 292)" text-anchor="middle">frozen int objects</text>
+
+  <!-- ===================== CENTER: FUNCTIONAL CORE ===================== -->
+  <rect x="370" y="72" width="390" height="430" rx="14" fill="#6366f1" fill-opacity="0.07" stroke="#818cf8" stroke-opacity="0.6"/>
+  <text x="386" y="96" class="h" fill="#a5b4fc">PURE FUNCTIONAL CORE</text>
+  <text x="386" y="112" class="sh">zero float · zero division · zero I/O</text>
+
+  <rect x="386" y="124" width="358" height="80" rx="10" class="card" stroke="#818cf8" stroke-opacity="0.75"/>
+  <text x="398" y="143" class="ct">models.py</text>
+  <text x="732" y="143" text-anchor="end" class="tag" fill="#a5b4fc">R0.1 · F1</text>
+  <text x="398" y="161" class="cb">Fixed-point integer units: kg · mm · m · ¢ · min · ‰</text>
+  <text x="398" y="177" class="mono">@dataclass(slots=True, frozen=True) ×7</text>
+  <text x="398" y="193" class="cb">Parse-don't-validate: invalid objects never exist</text>
+  <line x1="565" y1="205" x2="565" y2="216" stroke="#818cf8" stroke-width="2" marker-end="url(#aI)"/>
+
+  <rect x="386" y="218" width="358" height="66" rx="10" class="card" stroke="#818cf8" stroke-opacity="0.75"/>
+  <text x="398" y="237" class="ct">graph.py</text>
+  <text x="732" y="237" text-anchor="end" class="tag" fill="#a5b4fc">dual Dijkstra</text>
+  <text x="398" y="255" class="cb">Time-shortest leg (driven) · tie → distance → path</text>
+  <text x="398" y="271" class="cb">Distance-shortest D_min (admissible lower bound only)</text>
+  <line x1="565" y1="285" x2="565" y2="296" stroke="#818cf8" stroke-width="2" marker-end="url(#aI)"/>
+
+  <rect x="386" y="298" width="358" height="80" rx="10" class="card" stroke="#34d399" stroke-opacity="0.75"/>
+  <text x="398" y="317" class="ct">physics.py</text>
+  <text x="732" y="317" text-anchor="end" class="tag" fill="#6ee7b7">F1–F11 · EC-A–EC-D</text>
+  <text x="398" y="335" class="cb">Lever-arm axle torque · dual capacity · LIFO stack</text>
+  <text x="398" y="351" class="cb">ADR residue taint · EU 561/2006 tachograph FSM</text>
+  <text x="398" y="367" class="cb">Weight-dependent cost · backhaul EV · profit floor</text>
+  <line x1="565" y1="379" x2="565" y2="390" stroke="#818cf8" stroke-width="2" marker-end="url(#aI)"/>
+
+  <rect x="386" y="392" width="358" height="98" rx="10" class="card" stroke="#818cf8" stroke-opacity="0.75"/>
+  <text x="398" y="411" class="ct">optimizer.py</text>
+  <text x="732" y="411" text-anchor="end" class="tag" fill="#a5b4fc">best-first B&amp;B</text>
+  <text x="398" y="429" class="cb">Event-space search (PICKUP / DELIVER) on heapq</text>
+  <text x="398" y="445" class="cb">Admissible UB (A1) · sound exact-tacho dominance (A2)</text>
+  <text x="398" y="461" class="cb">O(1) persistent RouteStep.prev linked list (EC-F)</text>
+  <text x="398" y="479" class="mono">→ Solution(proven_optimal=True)</text>
+
+  <!-- ===================== RIGHT: GOVERNANCE ===================== -->
+  <rect x="790" y="72" width="290" height="430" rx="14" fill="#10b981" fill-opacity="0.06" stroke="#34d399" stroke-opacity="0.55"/>
+  <text x="806" y="96" class="h" fill="#6ee7b7">VERIFICATION &amp; GOVERNANCE</text>
+  <text x="806" y="112" class="sh">test_architecture_fitness.py</text>
+
+  <rect x="806" y="124" width="258" height="54" rx="10" class="card" stroke="#34d399" stroke-opacity="0.7"/>
+  <text x="818" y="143" class="tag" fill="#6ee7b7">FF-1</text>
+  <text x="856" y="143" class="ct">Zero-Float / Zero-Div AST</text>
+  <text x="818" y="163" class="cb">0 float · 0 complex · 0 ast.Div · 0 fromhex</text>
+
+  <rect x="806" y="186" width="258" height="54" rx="10" class="card" stroke="#34d399" stroke-opacity="0.7"/>
+  <text x="818" y="205" class="tag" fill="#6ee7b7">FF-2</text>
+  <text x="856" y="205" class="ct">Import Isolation AST</text>
+  <text x="818" y="225" class="cb">Per-module allowlist · no eval/exec/open</text>
+
+  <rect x="806" y="248" width="258" height="54" rx="10" class="card" stroke="#34d399" stroke-opacity="0.7"/>
+  <text x="818" y="267" class="tag" fill="#6ee7b7">FF-3</text>
+  <text x="856" y="267" class="ct">Frozen Slots AST</text>
+  <text x="818" y="287" class="cb">Exactly 10 dataclasses, all slots+frozen</text>
+
+  <rect x="806" y="310" width="258" height="70" rx="10" class="card" stroke="#34d399" stroke-opacity="0.7"/>
+  <text x="818" y="329" class="tag" fill="#6ee7b7">FF-4</text>
+  <text x="856" y="329" class="ct">Brute-Force DFS Oracle</text>
+  <text x="818" y="349" class="cb">50 seeds · Random(42) · no pruning</text>
+  <text x="818" y="365" class="cb">Independent physics replay verifier</text>
+
+  <rect x="806" y="390" width="258" height="100" rx="10" fill="#064e3b" fill-opacity="0.55" stroke="#34d399"/>
+  <text x="935" y="420" text-anchor="middle" font-family="Inter,Segoe UI,Helvetica,Arial,sans-serif" font-size="24" font-weight="800" fill="#6ee7b7">40 / 40</text>
+  <text x="935" y="440" text-anchor="middle" class="cb">tests passing in ≈1.0 s</text>
+  <text x="935" y="460" text-anchor="middle" class="mono">50/50 oracle parity</text>
+  <text x="935" y="478" text-anchor="middle" class="mono">100% PROVEN optimal</text>
+
+  <!-- governance → core (AST scan + oracle parity) -->
+  <path d="M806,210 C780,210 790,170 746,166" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#aE)"/>
+  <path d="M806,345 C780,345 790,440 746,440" fill="none" stroke="#34d399" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#aE)"/>
+  <text x="776" y="292" class="lbl" transform="rotate(90 776 292)" text-anchor="middle">AST scan · oracle parity</text>
+</svg>
+
