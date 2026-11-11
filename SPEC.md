@@ -349,7 +349,7 @@ def ingest_json_bundle(
    - `physics.py`: `{"__future__", "collections.abc", "optifreight.models", "optifreight.graph"}`
    - `optimizer.py`: `{"__future__", "collections.abc", "dataclasses", "heapq", "itertools", "optifreight.models", "optifreight.graph", "optifreight.physics"}`
    - `intake_gate.py`: `{"__future__", "collections.abc", "dataclasses", "enum", "json", "re", "optifreight.models", "optifreight.graph"}`
-   - `cli_visualizer.py`: `{"__future__", "argparse", "collections.abc", "optifreight.models", "optifreight.graph", "optifreight.optimizer"}`
+   - `cli_visualizer.py`: `{"__future__", "argparse", "collections.abc", "pathlib", "optifreight.models", "optifreight.graph", "optifreight.intake_gate", "optifreight.optimizer"}`
    - Also bans calls to `eval`, `exec`, `compile`, `open`, `__import__`, and `input` across `src/optifreight/*.py`.
 3. **`FF-3` (AST Immutable-Slot Dataclass Fitness Function):**
    Verifies that every `@dataclass` class in `src/optifreight/*.py` specifies `slots=True` and `frozen=True` as `ast.Constant(True)`, and asserts the discovered set contains all 10 dataclasses (`CityNode`, `RoadEdge`, `ShipmentOffer`, `TruckSpec`, `TachoState`, `RouteStep`, `TruckState`, `Leg`, `Solution`, `OfferRejection`).

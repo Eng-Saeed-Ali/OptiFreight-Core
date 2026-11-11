@@ -1,7 +1,7 @@
 # OptiFreight-Core — Model Relay Handoff Ledger (`HANDOFF.md`)
 
 ## 1. Current Relay Status
-**Status:** `ALL PHASES COMPLETE (Phase 0-A through Phase 2-B). 43/43 tests passing (including 1,050-seed Brute-Force Oracle parity & AST Fitness Functions FF-1..FF-4b).`
+**Status:** `ALL PHASES COMPLETE (Phase 0-A through Phase 2-B). 44/44 tests passing (including 1,050-seed Brute-Force Oracle parity & AST Fitness Functions FF-1..FF-4b).`
 
 | Phase / Step | Assigned Tier & Model | Target Files | Status |
 |---|---|---|---|
@@ -226,7 +226,7 @@
   - `tests/test_intake_gate.py` (Added `test_step7_envelope_hardening_and_closed_world`)
   - `README.md`, `pyproject.toml`, `.gitignore`, `.github/workflows/ci.yml` (Created flagship repository documentation & CI packaging)
   - `SPEC.md`, `HANDOFF.md` (Synced final contracts and completion log)
-- **Final Verification Summary:** 43 passed in ~1.6s (100% pass rate across all unit, security, AST fitness, and 1,050-seed Brute-Force Oracle tests).
+- **Final Verification Summary:** 44 passed in ~1.6s (100% pass rate across all unit, security, CLI bundle intake, AST fitness, and 1,050-seed Brute-Force Oracle tests).
 
 
 

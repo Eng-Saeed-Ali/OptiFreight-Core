@@ -1,10 +1,12 @@
 from __future__ import annotations
 import argparse
 from collections.abc import Sequence
+from pathlib import Path
 from optifreight.models import (
     CargoClass, CityNode, MAX_LDM_MM, RoadEdge, ShipmentOffer, TrailerType, TruckSpec, ldm_for,
 )
 from optifreight.graph import RoadGraph
+from optifreight.intake_gate import IntakeError, ingest_json_bundle
 from optifreight.optimizer import Solution, solve
 
 def format_eur(cents: int) -> str:
@@ -30,12 +32,9 @@ def render_bed_ascii(stack_items: Sequence[tuple[str, int]], width_chars: int = 
 
 def build_demo_scenario() -> tuple[RoadGraph, TruckSpec, tuple[ShipmentOffer, ...], str]:
     nodes = (
-        CityNode("BER", "Berlin", 0, 0),
-        CityNode("PRG", "Prague", 5_000, 1_000),
-        CityNode("VIE", "Vienna", 8_000, 1_000),
-        CityNode("MUC", "Munich", 10_000, 1_000),
-        CityNode("WAW", "Warsaw", 4_000, 1_000),
-        CityNode("MIL", "Milan", 25_000, 1_000),
+        CityNode("BER", "Berlin", 0, 0), CityNode("PRG", "Prague", 5_000, 1_000),
+        CityNode("VIE", "Vienna", 8_000, 1_000), CityNode("MUC", "Munich", 10_000, 1_000),
+        CityNode("WAW", "Warsaw", 4_000, 1_000), CityNode("MIL", "Milan", 25_000, 1_000),
     )
     edges = (
         RoadEdge("BER", "PRG", 350_000, 270, 5_000), RoadEdge("PRG", "BER", 350_000, 270, 5_000),
@@ -98,15 +97,22 @@ def render_solution_report(sol: Solution, offers_by_id: dict[str, ShipmentOffer]
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="OptiFreight-Core Route Optimizer CLI")
+    parser.add_argument("bundle", nargs="?", help="Optional path to optifreight.bundle/v1 JSON file")
     parser.add_argument("--max-expansions", type=int, default=50_000, help="Max B&B expansions")
     args = parser.parse_args(argv)
-    graph, truck, offers, start = build_demo_scenario()
+    if args.bundle:
+        try:
+            graph, truck, offers, start = ingest_json_bundle(Path(args.bundle).read_bytes())
+        except (OSError, IntakeError) as exc:
+            print(f"Intake error: {exc}")
+            return 2
+    else:
+        graph, truck, offers, start = build_demo_scenario()
     sol = solve(graph, truck, offers, start, max_expansions=args.max_expansions)
     if sol is None:
         print("No feasible route found.")
         return 1
-    offers_by_id = {o.id: o for o in offers}
-    print(render_solution_report(sol, offers_by_id, truck.trailer))
+    print(render_solution_report(sol, {o.id: o for o in offers}, truck.trailer))
     return 0
 
 if __name__ == "__main__":

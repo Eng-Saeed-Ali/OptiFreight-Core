@@ -54,13 +54,6 @@ from optifreight.optimizer import (
     dominates,
     solve,
 )
-from optifreight.cli_visualizer import (
-    format_eur,
-    render_bed_ascii,
-    build_demo_scenario,
-    render_solution_report,
-    main,
-)
 from optifreight.intake_gate import (
     MAX_PAYLOAD_BYTES,
     MAX_JSON_DEPTH,
@@ -75,6 +68,26 @@ from optifreight.intake_gate import (
     ingest_json_bundle_report,
     ingest_json_bundle,
 )
+
+
+def __getattr__(name: str) -> object:
+    if name in ("format_eur", "render_bed_ascii", "build_demo_scenario", "render_solution_report", "main"):
+        from optifreight.cli_visualizer import (
+            build_demo_scenario,
+            format_eur,
+            main,
+            render_bed_ascii,
+            render_solution_report,
+        )
+        return {
+            "format_eur": format_eur,
+            "render_bed_ascii": render_bed_ascii,
+            "build_demo_scenario": build_demo_scenario,
+            "render_solution_report": render_solution_report,
+            "main": main,
+        }[name]
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
 
 __all__ = [
     "MAX_WEIGHT_KG",

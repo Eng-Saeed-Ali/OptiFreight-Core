@@ -10,7 +10,7 @@ ALLOWLIST = {
     "physics.py": {"__future__", "collections.abc", "optifreight.models", "optifreight.graph"},
     "optimizer.py": {"__future__", "collections.abc", "dataclasses", "heapq", "itertools", "optifreight.models", "optifreight.graph", "optifreight.physics"},
     "intake_gate.py": {"__future__", "collections.abc", "dataclasses", "enum", "json", "re", "optifreight.models", "optifreight.graph"},
-    "cli_visualizer.py": {"__future__", "argparse", "collections.abc", "optifreight.models", "optifreight.graph", "optifreight.optimizer"},
+    "cli_visualizer.py": {"__future__", "argparse", "collections.abc", "pathlib", "optifreight.models", "optifreight.graph", "optifreight.intake_gate", "optifreight.optimizer"},
     "__init__.py": {"__future__", "optifreight.models", "optifreight.graph", "optifreight.physics", "optifreight.optimizer", "optifreight.cli_visualizer", "optifreight.intake_gate"},
 }
 

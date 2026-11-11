@@ -11,7 +11,8 @@ from optifreight.intake_gate import (
     ingest_json_bundle_report,
     ingest_json_bundle,
 )
-from optifreight.cli_visualizer import build_demo_scenario, render_solution_report
+from pathlib import Path
+from optifreight.cli_visualizer import build_demo_scenario, main, render_solution_report
 from optifreight.optimizer import solve
 
 
@@ -271,3 +272,18 @@ def test_step7_envelope_hardening_and_closed_world() -> None:
     _, _, offers, _, rej = ingest_json_bundle_report(json.dumps(d))
     assert [o.id for o in offers] == ["O1"]
     assert rej == (OfferRejection(1, None, "MALFORMED_OFFER", rej[0].detail),)
+
+
+def test_cli_main_with_json_bundle_file(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    valid_path = tmp_path.joinpath("valid_bundle.json")
+    valid_path.write_text(json.dumps(_minimal_valid_bundle_dict()), encoding="utf-8")
+    assert main([str(valid_path)]) == 0
+    out = capsys.readouterr().out
+    assert "OPTIFREIGHT-CORE DISPATCH & ROUTE REPORT" in out
+    assert "Delivered Offers:   O1" in out
+
+    bad_path = tmp_path.joinpath("bad_bundle.json")
+    bad_path.write_text('{"schema": "wrong"}', encoding="utf-8")
+    assert main([str(bad_path)]) == 2
+    assert "Intake error:" in capsys.readouterr().out
+

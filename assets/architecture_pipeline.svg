@@ -38,7 +38,7 @@
   <!-- ===================== LEFT: BOUNDARY SHELL ===================== -->
   <rect x="20" y="72" width="320" height="430" rx="14" fill="#f59e0b" fill-opacity="0.06" stroke="#f59e0b" stroke-opacity="0.55"/>
   <text x="36" y="96" class="h" fill="#fbbf24">IMPERATIVE BOUNDARY SHELL</text>
-  <text x="36" y="112" class="sh">intake_gate.py · 118 LOC</text>
+  <text x="36" y="112" class="sh">intake_gate.py · 116 LOC</text>
 
   <rect x="60" y="124" width="240" height="30" rx="15" fill="#7f1d1d" fill-opacity="0.55" stroke="#f87171"/>
   <text x="180" y="144" text-anchor="middle" class="ct" fill="#fecaca">⚠ Untrusted JSON / Webhook</text>
@@ -109,7 +109,7 @@
   <text x="398" y="411" class="ct">optimizer.py</text>
   <text x="732" y="411" text-anchor="end" class="tag" fill="#a5b4fc">best-first B&amp;B</text>
   <text x="398" y="429" class="cb">Event-space search (PICKUP / DELIVER) on heapq</text>
-  <text x="398" y="445" class="cb">Admissible UB (A1) · sound exact-tacho dominance (A2)</text>
+  <text x="398" y="445" class="cb">Admissible UB (A1) · exact-tacho + R0.5 dominance (A2, A10)</text>
   <text x="398" y="461" class="cb">O(1) persistent RouteStep.prev linked list (EC-F)</text>
   <text x="398" y="479" class="mono">→ Solution(proven_optimal=True)</text>
 
@@ -134,15 +134,15 @@
   <text x="818" y="287" class="cb">Exactly 10 dataclasses, all slots+frozen</text>
 
   <rect x="806" y="310" width="258" height="70" rx="10" class="card" stroke="#34d399" stroke-opacity="0.7"/>
-  <text x="818" y="329" class="tag" fill="#6ee7b7">FF-4</text>
-  <text x="856" y="329" class="ct">Brute-Force DFS Oracle</text>
-  <text x="818" y="349" class="cb">50 seeds · Random(42) · no pruning</text>
+  <text x="818" y="329" class="tag" fill="#6ee7b7">FF-4 / FF-4b</text>
+  <text x="888" y="329" class="ct">Brute-Force DFS Oracle</text>
+  <text x="818" y="349" class="cb">1 050 seeds (42 &amp; 2026) · no pruning</text>
   <text x="818" y="365" class="cb">Independent physics replay verifier</text>
 
   <rect x="806" y="390" width="258" height="100" rx="10" fill="#064e3b" fill-opacity="0.55" stroke="#34d399"/>
-  <text x="935" y="420" text-anchor="middle" font-family="Inter,Segoe UI,Helvetica,Arial,sans-serif" font-size="24" font-weight="800" fill="#6ee7b7">40 / 40</text>
-  <text x="935" y="440" text-anchor="middle" class="cb">tests passing in ≈1.0 s</text>
-  <text x="935" y="460" text-anchor="middle" class="mono">50/50 oracle parity</text>
+  <text x="935" y="420" text-anchor="middle" font-family="Inter,Segoe UI,Helvetica,Arial,sans-serif" font-size="24" font-weight="800" fill="#6ee7b7">44 / 44</text>
+  <text x="935" y="440" text-anchor="middle" class="cb">tests passing in ≈1.6 s</text>
+  <text x="935" y="460" text-anchor="middle" class="mono">1 050/1 050 oracle parity</text>
   <text x="935" y="478" text-anchor="middle" class="mono">100% PROVEN optimal</text>
 
   <!-- governance → core (AST scan + oracle parity) -->
